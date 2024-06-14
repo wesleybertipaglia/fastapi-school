@@ -2,8 +2,10 @@
 
 from typing import List
 from motor.motor_asyncio import AsyncIOMotorClient, AsyncIOMotorDatabase
-from src.core.database import client
+from src.core.database import MongoClient
 from src.schemas.student import StudentIn, StudentOut
+
+client = MongoClient()
 
 
 class StudentUsecase:
