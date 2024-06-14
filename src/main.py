@@ -1,13 +1,16 @@
+"""Main module."""
+
 from fastapi import FastAPI, APIRouter
 from src.core.settings import Settings
-from src.routes.student import StudentRouter
+from src.routes.student import router as student_router
 
 api_router = APIRouter()
 settings = Settings()
-student_router = StudentRouter()
 
 
 class App(FastAPI):
+    """Application class."""
+
     def __init__(self, *args, **kwargs) -> None:
         super().__init__(
             *args,

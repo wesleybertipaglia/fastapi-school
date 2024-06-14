@@ -1,3 +1,5 @@
+"""Student router module"""
+
 from typing import List
 from fastapi import APIRouter, Depends, status
 
