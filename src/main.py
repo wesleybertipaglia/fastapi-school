@@ -1,5 +1,10 @@
-from fastapi import FastAPI
-from .core.settings import settings
+from fastapi import FastAPI, APIRouter
+from src.core.settings import Settings
+from src.routes.student import StudentRouter
+
+api_router = APIRouter()
+settings = Settings()
+student_router = StudentRouter()
 
 
 class App(FastAPI):
@@ -14,3 +19,4 @@ class App(FastAPI):
 
 
 app = App()
+api_router.include_router(student_router, prefix="/students")

@@ -1,5 +1,6 @@
-"""Module for Student usecase class."""
+"""Student usecase module."""
 
+from typing import List
 from motor.motor_asyncio import AsyncIOMotorClient, AsyncIOMotorDatabase
 from src.core.database import client
 from src.schemas.student import StudentIn, StudentOut
@@ -25,5 +26,6 @@ class StudentUsecase:
         }
         return StudentOut(**student_out_data)
 
-
-student_usecase = StudentUsecase()
+    async def list(self) -> List[StudentOut]:
+        """List students."""
+        return [StudentOut(**item) async for item in self.collection.find()]

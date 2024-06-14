@@ -6,7 +6,7 @@ from pydantic import UUID4, BaseModel, Field
 
 
 class BaseSchema(BaseModel):
-    """Base schema for all schemas."""
+    """Base schema class."""
 
     id: UUID4 = Field(default_factory=uuid4)
     created_at: datetime = Field(default_factory=datetime.now)
