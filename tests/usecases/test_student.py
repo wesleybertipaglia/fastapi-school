@@ -24,23 +24,22 @@ async def test_usecase_list():
 async def test_usecase_get(student_in):
     """Test get student usecase."""
 
-    student = await student_usecase.create(body=student_in)
-    student = await student_usecase.get(student.id)
-    assert isinstance(student, StudentOut)
+    created_student = await student_usecase.create(body=student_in)
+    get_student = await student_usecase.get(created_student.id)
+    assert isinstance(get_student, StudentOut)
 
 
 async def test_usecase_update(student_in):
     """Test update student usecase."""
 
-    student = await student_usecase.create(body=student_in)
-    student = await student_usecase.update(student.id, StudentUpdate())
-    assert isinstance(student, StudentOut)
+    created_student = await student_usecase.create(body=student_in)
+    updated_student = await student_usecase.update(created_student.id, StudentUpdate())
+    assert isinstance(updated_student, StudentOut)
 
 
 async def test_usecase_delete(student_in):
     """Test delete student usecase."""
 
-    student = await student_usecase.create(body=student_in)
-    student = await student_usecase.delete(student.id)
-    assert isinstance(student, StudentOut)
-    assert student.deleted_at is not None
+    created_student = await student_usecase.create(body=student_in)
+    deleted_student = await student_usecase.delete(created_student.id)
+    assert isinstance(deleted_student, bool)

@@ -10,7 +10,7 @@ class StudentFactory:
     """Factory for schemas to generate random data for testing."""
 
     @staticmethod
-    def generate_in():
+    def factory_in():
         """Generate random data for testing."""
 
         data = {
@@ -24,7 +24,7 @@ class StudentFactory:
         return StudentIn(**data)
 
     @staticmethod
-    def generate_out():
+    def factory_out():
         """Generate random data for testing."""
 
         data = {
@@ -35,7 +35,7 @@ class StudentFactory:
         return StudentOut(**data)
 
     @staticmethod
-    def generate_update():
+    def factory_update():
         """Generate random data for testing."""
 
         data = {
@@ -49,7 +49,7 @@ class StudentFactory:
         return StudentUpdate(**data)
 
     @staticmethod
-    def generate_delete():
+    def factory_delete():
         """Generate random data for testing."""
 
         data = {

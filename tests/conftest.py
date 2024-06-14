@@ -1,12 +1,15 @@
 """Test settings module."""
 
 import asyncio
+from fastapi.testclient import TestClient
 import pytest
 from src.core.database import MongoClient
 from src.schemas.student import StudentIn
-from tests.factories.student import student_factory
+from src.main import app
+from tests.factories.student import StudentFactory
 
-client = MongoClient()
+client_db = MongoClient()
+student_factory = StudentFactory()
 
 
 @pytest.fixture(scope="session")
@@ -22,7 +25,13 @@ def event_loop():
 def mongo_client():
     """Get a mongo client instance."""
 
-    return client.get()
+    return client_db.get()
+
+
+@pytest.fixture
+def client():
+    with TestClient(app) as client:
+        yield client
 
 
 @pytest.fixture(autouse=True)
@@ -38,9 +47,14 @@ async def clear_collections(mongo_client):
         await mongo_client.get_database()[collection_name].delete_many({})
 
 
-@pytest.fixture(autouse=True)
+@pytest.fixture
 def student_in():
     """Get a student_in instance."""
 
-    data = student_factory()
+    data = student_factory.factory_in()
     return StudentIn(**data.model_dump())
+
+
+@pytest.fixture
+def students_in():
+    return [StudentIn(**student) for student in student_factory.factory_in()]

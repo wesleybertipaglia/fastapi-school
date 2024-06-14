@@ -8,10 +8,10 @@ from tests.factories.student import StudentFactory
 student_factory = StudentFactory()
 
 
-def test_valid_student_in():
+def test_valid_schema_in():
     """Test student schema with valid data."""
 
-    data = student_factory.generate_in()
+    data = student_factory.factory_in()
     student = StudentIn(**data.model_dump())
 
     assert student.name == data.name
@@ -21,10 +21,10 @@ def test_valid_student_in():
     assert student.birthdate == data.birthdate
 
 
-def test_valid_student_out():
+def test_valid_schema_out():
     """Test student schema with valid data."""
 
-    data = student_factory.generate_out()
+    data = student_factory.factory_in()
     student = StudentIn(**data.model_dump())
 
     assert student.id == data.id
@@ -32,10 +32,10 @@ def test_valid_student_out():
     assert student.updated_at == data.updated_at
 
 
-def test_valid_student_update():
+def test_valid_schema_update():
     """Test student schema with valid data."""
 
-    data = student_factory.generate_update()
+    data = student_factory.factory_in()
     student = StudentIn(**data.model_dump())
 
     assert student.name == data.name
@@ -45,10 +45,10 @@ def test_valid_student_update():
     assert student.birthdate == data.birthdate
 
 
-def test_valid_student_delete():
+def test_valid_schema_delete():
     """Test student schema with valid data."""
 
-    data = student_factory.generate_delete()
+    data = student_factory.factory_in()
     student = StudentIn(**data.model_dump())
 
     assert student.id == data.id
@@ -56,7 +56,7 @@ def test_valid_student_delete():
     assert student.updated_at == data.updated_at
 
 
-def test_invalid_student_in():
+def test_invalid_schema_in():
     """Test student schema with invalid data."""
 
     with pytest.raises(ValidationError):
@@ -66,7 +66,7 @@ def test_invalid_student_in():
         StudentIn(name="a", email="a", phone="a", address="a", birthdate="a")
 
 
-def test_invalid_student_out():
+def test_invalid_schema_out():
     """Test student schema with invalid data."""
 
     with pytest.raises(ValidationError):
@@ -76,7 +76,7 @@ def test_invalid_student_out():
         StudentIn(id="a", created_at="a", updated_at="a")
 
 
-def test_invalid_student_update():
+def test_invalid_schema_update():
     """Test student schema with invalid data."""
 
     with pytest.raises(ValidationError):
@@ -86,7 +86,7 @@ def test_invalid_student_update():
         StudentIn(name="a", email="a", phone="a", address="a", birthdate="a")
 
 
-def test_invalid_student_delete():
+def test_invalid_schema_delete():
     """Test student schema with invalid data."""
 
     with pytest.raises(ValidationError):
