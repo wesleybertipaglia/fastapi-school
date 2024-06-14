@@ -1,0 +1,1 @@
+"""Student routes test module."""
