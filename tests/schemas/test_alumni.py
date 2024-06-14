@@ -3,7 +3,7 @@
 from pydantic import ValidationError
 import pytest
 from src.schemas.alumni import AlumniIn
-from .factory import alumni_factory
+from ..factory import alumni_factory
 
 
 def test_alumni_valid():
