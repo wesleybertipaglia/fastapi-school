@@ -1,17 +1,17 @@
-"""Test cases for Alumni schema"""
+"""Test cases for Student schema"""
 
 from pydantic import ValidationError
 import pytest
-from src.schemas.alumni import AlumniIn
-from ..factory import alumni_factory
+from src.schemas.student import StudentIn
+from ..factories import student_factory
 
 
-def test_alumni_valid():
-    data = alumni_factory()
-    AlumniIn.model_validate(data)
+def test_student_valid():
+    data = student_factory()
+    StudentIn.model_validate(data)
 
 
-def test_alumni_invalid():
+def test_student_invalid():
     data = {
         "name": "Anakin Skywalker",
         "email": "anakin_skywalker@berkeley.edu",
@@ -20,7 +20,7 @@ def test_alumni_invalid():
         "birthdate": "1990-01-01",
     }
     with pytest.raises(ValidationError) as e:
-        AlumniIn.model_validate(data)
+        StudentIn.model_validate(data)
 
     assert e.value.errors()[0] == {
         "type": "missing",

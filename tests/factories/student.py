@@ -2,13 +2,13 @@
 
 from faker import Faker
 
-from src.schemas.alumni import AlumniIn
+from src.schemas.student import StudentIn
 
 faker = Faker()
 
 
-def alumni_factory():
-    return AlumniIn(
+def student_factory():
+    return StudentIn(
         name=faker.name(),
         email=faker.email(),
         phone=faker.phone_number(),

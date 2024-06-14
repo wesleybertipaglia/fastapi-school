@@ -2,7 +2,9 @@
 
 import asyncio
 import pytest
-from src.db.mongo import client
+from src.core.database import client
+from src.schemas.student import StudentIn
+from tests.factories import student_factory
 
 
 @pytest.fixture(scope="session")
@@ -26,3 +28,9 @@ async def clear_collections(mongo_client):
             continue
 
         await mongo_client.get_database()[collection_name].delete_many({})
+
+
+@pytest.fixture(autouse=True)
+def student_in():
+    data = student_factory()
+    return StudentIn(**data.model_dump())
